@@ -45,7 +45,7 @@
             border: 2px solid #e9ecef;
             border-radius: 8px;
             background-color: #ffffff;
-            touch-action: none; /* 핸드폰 스크롤 방지 및 터치 바로 인식 */
+            touch-action: none;
             max-width: 100%;
             height: auto;
         }
@@ -91,7 +91,7 @@
 
     <div class="container">
         <h1>페르마의 원리와 빛의 반사 시뮬레이터</h1>
-        <p class="subtitle">거울 위를 손가락으로 드래그하거나 터치해 보세요.</p>
+        <p class="subtitle">마우스나 손가락으로 거울 위를 드래그하여 최단 거리 지점을 찾아보세요.</p>
         
         <canvas id="simCanvas" width="700" height="400"></canvas>
 
@@ -124,7 +124,9 @@
         const mirrorY = 280;
         const pointA = { x: 150, y: 100 };
         const pointB = { x: 550, y: 100 };
-        let pointP = { x: 350, y: mirrorY };
+        
+        // 반사점 P의 시작 위치를 거울 맨 왼쪽(x: 60)으로 설정
+        let pointP = { x: 60, y: mirrorY };
 
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -243,7 +245,7 @@
         // PC 마우스
         canvas.addEventListener('mousemove', (e) => updatePosition(e.clientX));
 
-        // 모바일 터치 (터치 시작 및 터치 이동 모두 지원)
+        // 모바일 터치 지원
         canvas.addEventListener('touchstart', (e) => {
             if (e.touches.length > 0) updatePosition(e.touches[0].clientX);
         }, { passive: true });
